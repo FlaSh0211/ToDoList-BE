@@ -9,7 +9,7 @@ import passport from 'passport';
 import dotenv from 'dotenv'; 
 import db from './db';
 import User from './db/model/users';
-
+import routers from './routers'
 dotenv.config();
 
 const app = express();
@@ -17,15 +17,10 @@ app.use(helmet());
 app.use(logger("tiny"));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({extended: true}));
 
 db().connect;
-
-app.get('/', (req,res) => {
-    res.send('Hello Exprsess')
-});
-
+app.use('/routers', routers)
 app.listen(process.env.PORT, ()=>{
     console.log(`⛳ Express Server Listening at http://localhost:${process.env.PORT}`)
 });
