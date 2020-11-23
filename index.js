@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 db().connect;
-app.use('/routers', routers)
+app.use('/', routers)
 app.listen(process.env.PORT, ()=>{
     console.log(`⛳ Express Server Listening at http://localhost:${process.env.PORT}`)
 });
