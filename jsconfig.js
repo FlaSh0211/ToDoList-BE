@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "baseUrl": "src"
+      "baseUrl": "TODOLIST-BE"
     },
-    "include": ["src"]
+    "include": ["TODOLIST-BE"]
 }

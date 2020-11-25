@@ -1,15 +1,14 @@
-import express, { Router } from "express";
+import express from "express";
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
-import path from 'path';
-import session from 'express-session';
+import passportStrategy from 'lib/passport';
 import passport from 'passport';
 import dotenv from 'dotenv'; 
 import db from './db';
-import User from './db/model/users';
 import routers from './routers'
+
 dotenv.config();
 
 const app = express();
