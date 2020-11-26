@@ -19,7 +19,7 @@ User.statics.register = function({ email, nickname, password }) {
 };
 
 User.statics.update = function({ email, nickname, password }) {
-    User.findOne({ email })
+    this.findOne({ email })
         .then((user)=> {
             user.nickname = nickname;
             user.password = password;
@@ -30,14 +30,9 @@ User.statics.update = function({ email, nickname, password }) {
         });
 }
 
-User.statics.delete = function({ email }) {
-    User.deleteOne({ email })
-    .then(()=> {
-        return true;
-    })
-    .catch(()=> {
-        return false;
-    });
+User.statics.unRegister = function({ email }) {
+    return this.remove({ email });
+
 }
 
 export default mongoose.model('User',User);
