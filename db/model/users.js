@@ -2,12 +2,42 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const User = new Schema({
-    name: { type:String },
-    studentId: { Number },
-    email: { String }
+let User = new Schema({
+    password: { Number },
+    nickname: { type: String, unique: true },
+    email: { type: String, unique: true }
 
 });
 
+User.statics.register = function({ email, nickname, password }) {
+    const user = new this({
+        email,
+        nickname,
+        password
+    });
+    return user.save();
+};
 
-module.exports = mongoose.model('User',User);
+User.statics.update = function({ email, nickname, password }) {
+    User.findOne({ email })
+        .then((user)=> {
+            user.nickname = nickname;
+            user.password = password;
+            return user.save();
+        })
+        .catch(()=> {
+            return false
+        });
+}
+
+User.statics.delete = function({ email }) {
+    User.deleteOne({ email })
+    .then(()=> {
+        return true;
+    })
+    .catch(()=> {
+        return false;
+    });
+}
+
+export default mongoose.model('User',User);

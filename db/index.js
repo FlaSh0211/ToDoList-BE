@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'; 
 dotenv.config();
 
-module.exports = function() {
+module.exports = ()=> {
    return {
-       connect : 
+        connect : 
         mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true})
         .then(
             ()=> {console.log(`⛳ mongodb is connected`)},
