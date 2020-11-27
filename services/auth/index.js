@@ -7,7 +7,6 @@ export const registerService = ({ email, nickname, password })=>
     new Promise ((resolve, reject)=> {
         let response = null;
         const isValid = checkRegister({ email, nickname, password });
-        console.log(isValid);
         if(!isValid) {
             reject(
                 response = {
@@ -36,17 +35,45 @@ export const registerService = ({ email, nickname, password })=>
 export const unRegisterService = ({ email })=> 
     new Promise ((resolve, reject)=> {
         let response = null;
-        User.unRegister({ email })
+        User.unRegister({ email }).exec()
         .then((result)=> {
-            resolve(
-                response = {
-                    data: result,
-                    message: 'unregister success'
-                }
-            )
+            if(result.deletedCount == 0) {
+                resolve(
+                    response = {
+                        data: result,
+                        message: 'noting to unregister'
+                    }
+                )
+                return;
+            }
+            else {
+                resolve(
+                    response = {
+                        data: result,
+                        message: 'unregister success'
+                    }
+                )
+            }
         })
         .catch((err)=> {
             reject(err)
         }); 
     }
 )
+
+export const updateService = ({ email, nickname, password })=> 
+    new Promise((resolve, reject)=> {
+        let response = null;
+        User.update({ email, nickname, password })
+        .then((result)=> {
+            resolve(
+                response = {
+                    data: result,
+                    message: 'user updated'
+                }
+            )
+        })
+        .catch((err)=> {
+            reject(err)
+        })
+})

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 let User = new Schema({
-    password: { Number },
+    password: { type: String },
     nickname: { type: String, unique: true },
     email: { type: String, unique: true }
 
@@ -16,23 +16,24 @@ User.statics.register = function({ email, nickname, password }) {
         password
     });
     return user.save();
-};
+}
 
 User.statics.update = function({ email, nickname, password }) {
-    this.findOne({ email })
-        .then((user)=> {
-            user.nickname = nickname;
-            user.password = password;
-            return user.save();
-        })
-        .catch(()=> {
-            return false
-        });
+    return new Promise((resolve, reject)=> {
+        this.findOne({ email }).exec()
+            .then((user)=> {
+                user.nickname = nickname;
+                user.password = password;
+                resolve(user.save());
+            })
+            .catch((err)=> {
+               reject(err);
+            });
+   })
 }
 
 User.statics.unRegister = function({ email }) {
-    return this.remove({ email });
-
+    return this.deleteOne({ email });
 }
 
 export default mongoose.model('User',User);
