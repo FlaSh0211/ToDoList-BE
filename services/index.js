@@ -38,12 +38,23 @@ export const unRegisterService = (user)=>
         let response = null;
         User.unRegister({ email: user.email })
         .then((result)=> {
-            resolve(
-                response = {
-                    data: result,
-                    message: 'unregister success'
-                }
-            )
+            if(result.deletedCount == 0) {
+                resolve(
+                    response = {
+                        data: result,
+                        message: 'noting to unregister'
+                    }
+                )
+                return;
+            }
+            else {
+                resolve(
+                    response = {
+                        data: result,
+                        message: 'unregister success'
+                    }
+                )
+            }
         })
         .catch((err)=> {
             reject(err)

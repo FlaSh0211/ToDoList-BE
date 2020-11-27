@@ -31,7 +31,7 @@ User.statics.update = function({ email, nickname, password }) {
 }
 
 User.statics.unRegister = function({ email }) {
-    return this.remove({ email });
+    return this.deleteOne({ email });
 }
 
 export default mongoose.model('User',User);

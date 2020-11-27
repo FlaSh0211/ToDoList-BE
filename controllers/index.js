@@ -27,9 +27,9 @@ export const register = (req, res)=> {
 }
 
 export const unRegister = (req, res)=> {
-    const { email } = req.body;
     try {
-        unRegisterService({ email })
+        const { user } = req.body;
+        unRegisterService({ email: user.email })
         .then((response)=> {
             res.json({
                 data: response.data,
