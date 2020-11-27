@@ -20,7 +20,7 @@ User.statics.register = function({ email, nickname, password }) {
 
 User.statics.update = function({ email, nickname, password }) {
     return new Promise((resolve, reject)=> {
-        this.findOne({ email })
+        this.findOne({ email }).exec()
             .then((user)=> {
                 user.nickname = nickname;
                 user.password = password;

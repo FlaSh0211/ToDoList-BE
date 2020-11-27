@@ -1,5 +1,5 @@
 
-import { registerService, unRegisterService, updateService } from '@services';
+import { registerService, unRegisterService, updateService } from '@services/auth';
 
 export const register = (req, res)=> {
     const { email, nickname, password } = req.body;
