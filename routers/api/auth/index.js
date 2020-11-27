@@ -2,16 +2,16 @@ import express from 'express';
 import passport from 'passport';
 import localLogin from '@lib/passport/localLogin';
 import jwtCheck from '@lib/passport/jwtCheck';
-import { register, unRegister } from '@controllers';
+import { register, unRegister, update } from '@controllers';
 
 // api/auth
 const router =  express.Router();
 
-router.get('/', (req,res)=> {res.send('Hello Exprsess')});
+router.get('/', (res)=> {res.send('Hello Exprsess')});
 router.post('/login', localLogin.login);
 router.post('/register', register);
-router.put('/unregister', jwtCheck.jwtCheck , unRegister);
+router.put('/unregister', jwtCheck.jwtCheck, unRegister);
 
-router.put('/update', passport.authenticate('jwt', { session: false }), );
+router.put('/update',jwtCheck.jwtCheck, update);
 
 module.exports = router;
