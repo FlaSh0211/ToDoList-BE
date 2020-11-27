@@ -8,7 +8,7 @@ const router =  express.Router();
 router.get('/', (req,res)=> {res.send('Hello Exprsess')});
 router.post('/login', localLogin.login);
 router.post('/register', register);
-router.put('/unregister', unRegister);
+router.put('/unregister', passport.authenticate('jwt', { session: false }), unRegister);
 router.put('/update', passport.authenticate('jwt', { session: false }), );
 
 module.exports = router;

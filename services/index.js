@@ -7,7 +7,7 @@ export const registerService = ({ email, nickname, password })=>
     new Promise ((resolve, reject)=> {
         let response = null;
         const isValid = checkRegister({ email, nickname, password });
-        console.log(isValid);
+        
         if(!isValid) {
             reject(
                 response = {
@@ -33,10 +33,10 @@ export const registerService = ({ email, nickname, password })=>
     }
 )
 
-export const unRegisterService = ({ email })=> 
+export const unRegisterService = (user)=> 
     new Promise ((resolve, reject)=> {
         let response = null;
-        User.unRegister({ email })
+        User.unRegister({ email: user.email })
         .then((result)=> {
             resolve(
                 response = {
