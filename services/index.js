@@ -33,10 +33,10 @@ export const registerService = ({ email, nickname, password })=>
     }
 )
 
-export const unRegisterService = (user)=> 
+export const unRegisterService = ({ email })=> 
     new Promise ((resolve, reject)=> {
         let response = null;
-        User.unRegister({ email: user.email })
+        User.unRegister({ email })
         .then((result)=> {
             if(result.deletedCount == 0) {
                 resolve(
@@ -61,3 +61,9 @@ export const unRegisterService = (user)=>
         }); 
     }
 )
+
+export const updateService = (user)=> 
+    new Promise((resolve, reject)=> {
+        let response = null;
+        User.update({ email, nickname, password});
+})
