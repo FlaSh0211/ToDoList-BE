@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 let User = new Schema({
     password: { type: String },
     nickname: { type: String, unique: true },
-    email: { type: String, unique: true }
+    email: { type: String, unique: true },
 
 });
 
@@ -21,15 +21,15 @@ User.statics.register = function({ email, nickname, password }) {
 User.statics.update = function({ email, nickname, password }) {
     return new Promise((resolve, reject)=> {
         this.findOne({ email }).exec()
-            .then((user)=> {
-                user.nickname = nickname;
-                user.password = password;
-                resolve(user.save());
-            })
-            .catch((err)=> {
-               reject(err);
-            });
-   })
+        .then((user)=> {
+            user.nickname = nickname;
+            user.password = password;
+            resolve(user.save());
+        })
+        .catch((err)=> {
+            reject(err);
+        });
+    })
 }
 
 User.statics.unRegister = function({ email }) {

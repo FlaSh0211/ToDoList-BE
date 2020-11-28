@@ -13,22 +13,23 @@ export const registerService = ({ email, nickname, password })=>
                     data: null,
                     message: "register data is not valid"
                 }
-            ) 
-            return;
+            )   
         }
-        User.register({ email, nickname, password })
-        .then((user)=> {
-            resolve(
-                response = {
-                    data: user,
-                    message: 'register success'
-                }
-            )
-            return;
-        })
-        .catch((err)=> {
-            reject(err)
-        }); 
+        else {
+            User.register({ email, nickname, password })
+            .then((user)=> {
+                resolve(
+                    response = {
+                        data: user,
+                        message: 'register success'
+                    }
+                )
+                
+            })
+            .catch((err)=> {
+                reject(err)
+            }); 
+        }
     }
 )
 
@@ -44,7 +45,6 @@ export const unRegisterService = ({ email })=>
                         message: 'noting to unregister'
                     }
                 )
-                return;
             }
             else {
                 resolve(
