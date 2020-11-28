@@ -22,7 +22,7 @@ Todolist.statics.create = function({ email, content, date }) {
 
 Todolist.statics.update = function({ _id, content }) {
     return new Promise((resolve, reject)=> {
-        User.findOne({ _id }).exec()
+        this.findOne({ _id }).exec()
         .then((result)=> {
             result.content = content;
             resolve(result.save());
@@ -34,14 +34,14 @@ Todolist.statics.update = function({ _id, content }) {
 }
 
 Todolist.statics.deleteList = function({ _id }) {
-    return User.deleteOne({ _id });
+    return this.deleteOne({ _id });
 }
 
 Todolist.statics.deleteDay = function({ date }) {
-    return User.deleteMany({ date })
+    return this.deleteMany({ date })
 }
 
 Todolist.statics.get = function({ email }) {
-    return User.find({ email }).sort({date:-1}).sort({date:-1})
+    return this.find({ email }).sort({date:-1}).sort({date:-1})
 }
 module.exports = mongoose.model('Todolist', Todolist);
