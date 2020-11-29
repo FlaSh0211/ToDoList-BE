@@ -4,7 +4,6 @@ import { create, update, deleteDay, deleteList, get } from '@controllers/todolis
 // api/todolist
 const router =  express.Router();
 
-router.get('/', (res)=> {res.send('Hello Exprsess')});
 router.post('/create', jwtCheck.jwtCheck, create);
 router.put('/deleteDay', jwtCheck.jwtCheck, deleteDay);
 router.put('/deleteList', jwtCheck.jwtCheck, deleteList);
