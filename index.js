@@ -8,6 +8,8 @@ import passport from 'passport';
 import dotenv from 'dotenv'; 
 import db from './db';
 import routers from './routers'
+import cors from 'cors';
+
 dotenv.config();
 
 const app = express();
@@ -20,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
 passportStrategy();
-
+app.use(cors())
 app.use('/', routers)
 app.listen(process.env.PORT, ()=>{
     console.log(`⛳ Express Server Listening at http://localhost:${process.env.PORT}`)
