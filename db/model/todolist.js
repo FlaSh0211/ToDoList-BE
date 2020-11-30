@@ -10,12 +10,13 @@ let Todolist = new Schema ({
     dateString: { type: String }
 })
 
-Todolist.statics.create = function({ email, content, date }) {
+Todolist.statics.create = function({ email, content, date, type }) {
     const todolist = new this({
         email,
         content,
         date,
-        dateString: date
+        dateString: date,
+        type
     })
     return todolist.save();
 }
@@ -42,6 +43,6 @@ Todolist.statics.deleteDay = function({ date }) {
 }
 
 Todolist.statics.get = function({ email }) {
-    return this.find({ email }).sort({date:-1}).sort({date:-1})
+    return this.find({ email }).sort({date:-1})
 }
 module.exports = mongoose.model('Todolist', Todolist);
