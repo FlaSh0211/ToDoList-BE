@@ -8,6 +8,6 @@ router.post('/create', jwtCheck.jwtCheck, create);
 router.put('/deleteDay', jwtCheck.jwtCheck, deleteDay);
 router.put('/deleteList', jwtCheck.jwtCheck, deleteList);
 router.put('/update',jwtCheck.jwtCheck, update);
-router.get('/get',jwtCheck.jwtCheck, get);
+router.post('/get',jwtCheck.jwtCheck, get);
 
 module.exports = router;

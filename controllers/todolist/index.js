@@ -1,9 +1,11 @@
 import { createService, deleteDayService, deleteListService, updateService, getService } from '@services/todolist';
 
 export const create = async(req, res) => {
-    const { user, content, date } = req.body;
+    const { user, content, date, type } = req.body;
     try {
-        const response = await createService({ email: user.email, content, date });
+        await createService({ email: user.email, content, date, type });
+        const response = await getService({ email: user.email });
+
         res.json({
             data: response.data,
             message: response.message

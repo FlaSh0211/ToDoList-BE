@@ -1,7 +1,7 @@
 import Todolist from '@db/model/todolist';
 import { checkTodolist } from '@lib/validation/format';
 
-export const createService = async({ email, content, date })=> {
+export const createService = async({ email, content, date, type })=> {
     let response = null;
     const isValid = checkTodolist({ email, content, date });
     if(!isValid) {
@@ -11,7 +11,7 @@ export const createService = async({ email, content, date })=> {
         }
     }
     try{
-        const result = await Todolist.create({ email, content, date });
+        const result = await Todolist.create({ email, content, date, type });
         return response = {
             data: result,
             message: "todolist created"
@@ -76,6 +76,7 @@ export const getService = async({ email })=> {
     let response = null;
     try {
         const result = await Todolist.get({ email });
+        console.log(result,"asd")
         return response = {
             data: result,
             message: "get success"
