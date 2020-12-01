@@ -76,7 +76,6 @@ export const getService = async({ email })=> {
     let response = null;
     try {
         const result = await Todolist.get({ email });
-        console.log(result,"asd")
         return response = {
             data: result,
             message: "get success"

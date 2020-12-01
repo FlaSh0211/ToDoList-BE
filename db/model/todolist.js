@@ -7,7 +7,8 @@ let Todolist = new Schema ({
     email: { type: String },
     content: { type: String },
     date: { type: Date },
-    dateString: { type: String }
+    dateString: { type: String },
+    type: { type: String }
 })
 
 Todolist.statics.create = function({ email, content, date, type }) {
