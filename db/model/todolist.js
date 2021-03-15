@@ -23,16 +23,14 @@ Todolist.statics.create = function({ email, content, date, type }) {
 }
 
 Todolist.statics.update = function({ _id, content }) {
-    return new Promise((resolve, reject)=> {
-        this.findOne({ _id }).exec()
+    return this.findOne({ _id })
         .then((result)=> {
             result.content = content;
-            resolve(result.save());
+            return result.save();
         })
         .catch((err)=> {
-            reject(err);
+            return err;
         })
-    })
 }
 
 Todolist.statics.deleteList = function({ _id }) {

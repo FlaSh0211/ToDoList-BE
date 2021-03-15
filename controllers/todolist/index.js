@@ -70,14 +70,11 @@ export const get = async(req, res) => {
     }
 }
 
-export const update = async(req, res) => {
+export const update = (req, res) => {
     const {  _id, content } = req.body;
+    console.log('1')
     try {
-        const response = await updateService({ content, _id });
-        res.json({
-            data: response.data,
-            message: response.message
-        }) 
+        updateService({ content, _id, res });
     }
     catch(err) {
         res.json({
@@ -85,4 +82,5 @@ export const update = async(req, res) => {
             message: "update controller is not working"
         })
     }
+    console.log('2')
 }

@@ -28,6 +28,7 @@ export const deleteListService = async({ _id })=> {
     let response = null;
     try {
         const result = await Todolist.deleteList({ _id });
+        console.log('service')
         return response = {
             data: result,
             message: "delete success"
@@ -56,14 +57,14 @@ export const deleteDayService = async({ date })=> {
         }
     }
 }
-export const updateService = async({ _id, content })=> {
+export const updateService = async({ _id, content, res })=> {
     let response = null;
     try {
-        const result = await Todolist.update({ _id, content });
-        return response = {
-            data: result,
-            message: "update success"
-        }
+        response = await Todolist.update({ _id, content });
+        res.json({
+            data: response,
+            message: 'update success'
+        }) 
     }
     catch (err) {
         return response = {
