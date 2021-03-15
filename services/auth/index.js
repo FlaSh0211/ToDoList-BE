@@ -28,7 +28,7 @@ export const registerService = ({ email, nickname, password })=>
             })
             .catch((err)=> {
                 reject(err)
-            }); 
+            });
         }
     }
 )

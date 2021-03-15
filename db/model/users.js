@@ -19,17 +19,15 @@ User.statics.register = function({ email, nickname, password }) {
 }
 
 User.statics.update = function({ email, nickname, password }) {
-    return new Promise((resolve, reject)=> {
-        this.findOne({ email }).exec()
+    return this.findOne({ email }).exec()
         .then((user)=> {
             user.nickname = nickname;
             user.password = password;
-            resolve(user.save());
+            return user.save();
         })
         .catch((err)=> {
-            reject(err);
+            return err;
         });
-    })
 }
 
 User.statics.unRegister = function({ email }) {

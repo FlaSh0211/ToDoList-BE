@@ -24,6 +24,7 @@ export const register = (req, res)=> {
             message: "register controller is not working"
         })
     }
+
 }
 
 export const unRegister = (req, res)=> {
